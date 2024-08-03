@@ -4,20 +4,26 @@ print("load module MC_BANKER: sh_config.lua")
 CONFIG = CONFIG or {}
 CONFIG.MC_BANKER = {}
 
+-- Inclure les fichiers tiers
+include("gmodadminsuite/modules/logging/modules/monarch_banker_printer.lua")
+
+
 CONFIG.MC_BANKER.PrintTime = 30 -- Chaque intervalle écoulé signifie un gain d'argent pour l'imprimante, mais aussi une perte de batterie, de papier ou d'encre.
 
 CONFIG.MC_BANKER.DistToPrinter = 200000 -- Permet de modifier la distance d'affichage des Start3D2D des printers 
 
 CONFIG.MC_BANKER.Vector_Spawn_Box = Vector( -3374, -3567, 96 ) // Spawn de la boite à l'achat
 
-CONFIG.MC_BANKER.Blogs = true -- Activer les blogs pour traquer les interactions de vos joueurs 
+CONFIG.MC_BANKER.Blogs = false -- Activer les blogs pour traquer les interactions de vos joueurs 
 
 CONFIG.MC_BANKER.JobBanker = TEAM_BANKER // Job du banquier permet d'ouvir le PNJ SHOP
 
 CONFIG.MC_BANKER.PNJ_model = "models/Humans/Group01/male_02.mdl"
 CONFIG.MC_BANKER.PNJ_name = "Vendeur de Printer"
 
-CONFIG.MC_BANKER.MaxTaxs = 50
+
+-- Par exemple, admettons qu'il y ait 1 000 € dans l'imprimante et que le paramètre soit défini ainsi : CONFIG.MC_BANKER.MaxMinTaxs = {20, 50}. Le banquier pourra alors recevoir une somme comprise entre 200 € et 500 €. En gros, cela permet de fixer une limite minimale et maximale à la somme que le banquier peut taxer.
+CONFIG.MC_BANKER.MaxMinTaxs = { 20, 50 } -- Taxe max et min que le banquier peut appliquer
 CONFIG.MC_BANKER.Bank_transfer = 10 // Interet pour les transferts ( l'argent que le joueur va perdre )
 
 CONFIG.MC_BANKER.MinMoneyForTransfert = 150
@@ -26,6 +32,9 @@ CONFIG.MC_BANKER.DistBanker = 200000 * 4
 
 CONFIG.MC_BANKER.EnableTaxMayor = false // Compatible avec https://www.gmodstore.com/market/view/slawer-mayor-an-advanced-mayor-system
 CONFIG.MC_BANKER.TaxMayor = 10 
+
+CONFIG.MC_BANKER.RefundPlayer = true -- Souhaitez vous que quand il n'y a plus de banquier, le joueur soit remboursé de ses printers ?
+CONFIG.MC_BANKER.RefundInt = 10 -- % pour le remboursement, ex: Cout du printer de 100 $ sera rembourse de 10 $ avec CONFIG.MC.BANKER.RefundInt = 10
 
 CONFIG.MC_BANKER.LimitPrinter = 5
 
